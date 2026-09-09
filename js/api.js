@@ -26,7 +26,7 @@ export const api = {
   logout() {
     localStorage.removeItem('peersolve_token');
     localStorage.removeItem('peersolve_user');
-    window.location.href = '/login.html';
+    window.location.href = 'login.html';
   },
 
   async request(endpoint, options = {}) {

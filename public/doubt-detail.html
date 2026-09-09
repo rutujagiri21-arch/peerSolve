@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doubt Details & Solutions | PeerSolve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/doubt.css">
+</head>
+<body style="background: var(--bg-subtle);">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="nav-logo">
+        <div class="logo-badge">P</div>
+        <span>PeerSolve</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/dashboard.html" class="nav-link">Doubts Feed</a></li>
+        <li><a href="/leaderboard.html" class="nav-link">Senior Leaderboard</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/dashboard.html" class="btn btn-secondary">&larr; Back to Feed</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Doubt Detail Container -->
+  <main class="doubt-detail-container" id="doubt-detail-container">
+    
+    <a href="/dashboard.html" class="back-link">&larr; Back to all doubts</a>
+
+    <!-- Main Question Hero Card -->
+    <article class="question-hero-card">
+      
+      <div class="question-top-meta">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="subject-badge" id="q-subject-badge">DBMS</span>
+          <span class="status-indicator open" id="q-status-badge">Open Doubt</span>
+        </div>
+
+        <div class="author-chip">
+          <div class="author-chip-avatar" id="q-author-avatar">🎓</div>
+          <div class="author-chip-info">
+            <span class="author-chip-name" id="q-author-name">Student</span>
+            <span class="author-chip-sub" id="q-author-dept">Computer Science</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="question-full-title" id="q-title">Loading Question Title...</h1>
+      <div class="question-full-desc" id="q-description">Loading question description...</div>
+
+      <!-- Code Block Wrapper -->
+      <div class="code-block-wrapper" id="q-code-snippet" style="display: none;">
+        <div class="code-block-header">
+          <span>Question Code Snippet</span>
+        </div>
+        <pre class="code-content"></pre>
+      </div>
+
+      <div class="question-actions-row">
+        <div class="doubt-tags" id="q-tags-container"></div>
+
+        <button class="btn btn-secondary" id="q-me-too-btn" style="padding: 8px 16px;">
+          <span>▲ I have this doubt too</span>
+          <span id="q-me-too-count" style="font-weight: 800; font-family: monospace;">0</span>
+        </button>
+      </div>
+
+    </article>
+
+    <!-- Solutions Section Header -->
+    <section class="solutions-section">
+      
+      <div class="solutions-header" id="solutions-header">
+        <h2>
+          <span>👨‍💻 Peer & Senior Solutions</span>
+          <span class="solutions-count-badge" id="answers-count-badge">0</span>
+        </h2>
+        <span style="font-size: 13px; color: var(--text-muted);">
+          Multiple seniors can share answers and alternative perspectives!
+        </span>
+      </div>
+
+      <!-- Answers List -->
+      <div class="answers-list" id="answers-container">
+        <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+          Loading solutions...
+        </div>
+      </div>
+
+      <!-- Submit Answer Card -->
+      <div class="post-answer-card">
+        <h3>Submit an Answer / Explanation</h3>
+        <p id="answer-role-hint">Seniors earn <strong>+10 Reputation points</strong> for contributing, and <strong>+25 Reputation</strong> if accepted as Best Answer.</p>
+
+        <form id="post-answer-form" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label for="answer-content-input">Your Solution & Conceptual Breakdown</label>
+            <textarea id="answer-content-input" class="form-control" placeholder="Explain the concept step-by-step. Break down technical jargon so junior peers can grasp it easily..." required style="min-height: 140px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="answer-code-input">Working Code Snippet or Example (Optional)</label>
+            <textarea id="answer-code-input" class="form-control code-textarea" placeholder="Provide clean, tested sample code or SQL tables..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary" style="padding: 12px 24px;">
+              Post Solution (+10 Reputation)
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="/js/doubt.js"></script>
+</body>
+</html>

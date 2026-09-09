@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register | PeerSolve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .auth-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-subtle);
+    }
+    .auth-card-container {
+      max-width: 480px;
+      width: 100%;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-subtle);
+    }
+    .auth-tab {
+      padding: 16px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .auth-tab.active {
+      background: #ffffff;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+    }
+    .auth-form-body {
+      padding: 32px;
+    }
+    .auth-form-body form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .role-selection-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .role-option {
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .role-option input {
+      display: none;
+    }
+    .role-option:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .auth-error {
+      color: #ef4444;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: -4px;
+    }
+    .demo-users-box {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      border: 1px dashed var(--border-color);
+    }
+    .demo-users-box h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .demo-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .demo-btn {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .demo-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary-subtle);
+    }
+  </style>
+</head>
+<body class="auth-page-wrapper">
+
+  <!-- Simple Header -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="nav-logo">
+        <div class="logo-badge">P</div>
+        <span>PeerSolve</span>
+      </a>
+      <a href="/" class="btn btn-secondary">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <div class="container" style="flex: 1; display: flex; align-items: center; justify-content: center;">
+    
+    <div class="auth-card-container">
+      
+      <!-- Already logged in notice -->
+      <div id="already-logged-in-banner" style="display:none; padding:16px; background:var(--primary-light); color:var(--primary); font-size:13px; font-weight:600; text-align:center;">
+        Logged in as <span id="logged-in-user-name"></span>. <a href="/dashboard.html" style="text-decoration:underline;">Go to Dashboard &rarr;</a>
+      </div>
+
+      <!-- Tabs: Login vs Register -->
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login">Login</div>
+        <div class="auth-tab" id="tab-register">Register Account</div>
+      </div>
+
+      <div class="auth-form-body">
+        
+        <!-- LOGIN FORM -->
+        <form id="form-login">
+          <div>
+            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Welcome Back!</h2>
+            <p style="font-size: 13px; color: var(--text-muted);">Login to ask doubts or provide senior solutions</p>
+          </div>
+
+          <div id="login-error" class="auth-error"></div>
+
+          <div class="form-group">
+            <label for="login-identifier">Username or Email</label>
+            <input type="text" id="login-identifier" class="form-control" placeholder="e.g. aditya_senior or rahul_student" required>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-control" placeholder="Enter password" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 4px;">
+            Login to PeerSolve
+          </button>
+
+          <!-- 1-Click Demo Login -->
+          <div class="demo-users-box">
+            <h4>⚡ Quick Test Login (1-Click)</h4>
+            <div class="demo-btns">
+              <button type="button" class="demo-btn" id="quick-senior-btn">👨‍💻 Login Senior (Aditya)</button>
+              <button type="button" class="demo-btn" id="quick-student-btn">🎒 Login Student (Rahul)</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="form-register" style="display: none;">
+          <div>
+            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Join PeerSolve</h2>
+            <p style="font-size: 13px; color: var(--text-muted);">Register your profile in MySQL</p>
+          </div>
+
+          <div id="register-error" class="auth-error"></div>
+
+          <!-- Role Selector: Student vs Senior -->
+          <div class="form-group">
+            <label>Select Your Academic Role</label>
+            <div class="role-selection-group">
+              <label class="role-option">
+                <input type="radio" name="reg-role" value="student" checked>
+                <div style="font-size: 20px;">🎓</div>
+                <div style="font-size: 13px;">Junior Student</div>
+                <div style="font-size: 11px; opacity: 0.75;">Ask & resolve doubts</div>
+              </label>
+
+              <label class="role-option">
+                <input type="radio" name="reg-role" value="senior">
+                <div style="font-size: 20px;">👨‍💻</div>
+                <div style="font-size: 13px;">Senior Mentor</div>
+                <div style="font-size: 11px; opacity: 0.75;">Earn reputation & mentor</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="e.g. Aditya Sharma" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-username">Username</label>
+            <input type="text" id="reg-username" class="form-control" placeholder="e.g. aditya_cs" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email">College / Personal Email</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="e.g. aditya@college.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="Create a secure password" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label for="reg-department">Department / Branch</label>
+              <select id="reg-department" class="form-control">
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">IT</option>
+                <option value="Electronics & Telecom">Electronics</option>
+                <option value="Electrical Engineering">Electrical</option>
+                <option value="Mechanical Engineering">Mechanical</option>
+                <option value="Civil Engineering">Civil</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-year">Year of Study</label>
+              <select id="reg-year" class="form-control">
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="Alumni">Alumni</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 4px;">
+            Create Account & Continue
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

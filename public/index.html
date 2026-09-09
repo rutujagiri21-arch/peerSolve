@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PeerSolve | Learn Together. Grow Together.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar (Matches Screenshot 1) -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="nav-logo">
+        <div class="logo-badge">P</div>
+        <span>PeerSolve</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link" style="color: var(--primary); font-weight: 700;">Home</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="/dashboard.html" class="nav-link">Features</a></li>
+        <li><a href="/leaderboard.html" class="nav-link">Reputation</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/login.html" class="btn btn-text" id="nav-login-btn">Login</a>
+        <a href="/login.html#register" class="btn btn-primary" id="nav-get-started-btn">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Matches Screenshot 1) -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      
+      <!-- Left Column: Copy & Actions -->
+      <div class="hero-content">
+        <div class="pill-badge">Peer-to-Peer Learning</div>
+        
+        <h1 class="hero-title">
+          Ask doubts.<br>
+          <span class="highlight">Help others.</span>
+          Grow together.
+        </h1>
+
+        <p class="hero-description">
+          PeerSolve connects students with peers and seniors to solve academic doubts, share knowledge and build a strong learning community.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="/login.html#register" class="btn btn-primary">Start Learning &rarr;</a>
+          <a href="/dashboard.html" class="btn btn-secondary">Explore Doubts</a>
+        </div>
+
+        <div class="students-counter">
+          <div class="avatar-group">
+            <div class="avatar-bubble b-blue">R</div>
+            <div class="avatar-bubble b-purple">A</div>
+            <div class="avatar-bubble b-indigo">N</div>
+            <div class="avatar-bubble b-pink">V</div>
+          </div>
+          <span class="students-caption">Students helping students every day</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Floating Mockup Cards (Exact Match to Screenshot 1) -->
+      <div class="hero-preview">
+        
+        <!-- Floating +25 Reputation Badge -->
+        <div class="floating-reputation-badge">
+          <div class="star-icon-box">★</div>
+          <div>
+            <div style="font-size: 13px; font-weight: 800;">+25 Reputation</div>
+            <div style="font-size: 10px; font-weight: 400; opacity: 0.85;">Best answer accepted</div>
+          </div>
+        </div>
+
+        <!-- Question Card (DBMS) -->
+        <div class="preview-doubt-card">
+          <div class="card-top-row">
+            <span class="subject-badge">DBMS</span>
+            <span class="card-timestamp">2 min ago</span>
+          </div>
+
+          <h3>What is normalization in DBMS?</h3>
+          <p>Can someone explain 1NF, 2NF and 3NF with a simple example?</p>
+
+          <div class="preview-author">
+            <div class="preview-author-avatar">A</div>
+            <div class="preview-author-info">
+              Aditya Sharma
+              <span>Computer Science</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overlapping Best Answer Card -->
+        <div class="preview-best-answer-card">
+          <div class="best-answer-header">
+            <span class="best-answer-pill">Best Answer</span>
+            <div class="check-circle">&#10003;</div>
+          </div>
+
+          <p>Normalization is the process of organizing data to reduce redundancy and improve data integrity.</p>
+
+          <div class="senior-author-row">
+            <div class="senior-avatar-badge">S</div>
+            <div class="senior-author-details">
+              Senior Student
+              <span>Reputation 2,450</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Stats Counter Section (Exact Match to Screenshot 2) -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      
+      <div class="stat-item">
+        <h2 id="stat-questions">1,200+</h2>
+        <p>Questions Asked</p>
+      </div>
+
+      <div class="stat-item">
+        <h2 id="stat-answers">3,500+</h2>
+        <p>Answers Shared</p>
+      </div>
+
+      <div class="stat-item">
+        <h2 id="stat-students">850+</h2>
+        <p>Active Students</p>
+      </div>
+
+      <div class="stat-item">
+        <h2 id="stat-subjects">10+</h2>
+        <p>Subjects</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- "How It Works" Section (Exact Match to Screenshot 2 & 3) -->
+  <section class="how-it-works-section" id="how-it-works">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="pill-badge">How It Works</div>
+        <h2>Learning becomes better together.</h2>
+        <p>PeerSolve makes it simple to ask, answer and learn from the academic community.</p>
+      </div>
+
+      <div class="cards-grid-3">
+        
+        <!-- Card 01: Ask Your Doubt -->
+        <div class="how-card">
+          <span class="card-step-num">01</span>
+          <div class="how-icon-box">?</div>
+          <h3>Ask Your Doubt</h3>
+          <p>Post your academic question with details, subject and relevant tags.</p>
+          <a href="/dashboard.html" class="card-link">Ask a doubt &rarr;</a>
+        </div>
+
+        <!-- Card 02: Get Helpful Answers -->
+        <div class="how-card">
+          <span class="card-step-num">02</span>
+          <div class="how-icon-box">&#8599;</div>
+          <h3>Get Helpful Answers</h3>
+          <p>Peers and seniors can share explanations, examples and solutions.</p>
+          <a href="/dashboard.html" class="card-link">Explore doubts &rarr;</a>
+        </div>
+
+        <!-- Card 03: Build Reputation -->
+        <div class="how-card">
+          <span class="card-step-num">03</span>
+          <div class="how-icon-box">&#9733;</div>
+          <h3>Build Reputation</h3>
+          <p>Give useful answers, earn reputation and become a trusted contributor.</p>
+          <a href="/leaderboard.html" class="card-link">View leaderboard &rarr;</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 PeerSolve. Developed for collaborative college doubt resolution & senior mentorship.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/landing.js"></script>
+</body>
+</html>

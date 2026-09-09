@@ -2,7 +2,7 @@
 // PeerSolve API Client Helper
 // ==========================================================
 
-const API_BASE = '/api';
+const API_BASE = 'https://peersolve-backend.onrender.com/api';
 
 export const api = {
   getToken() {

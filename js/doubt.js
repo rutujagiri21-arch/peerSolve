@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const questionId = urlParams.get('id');
 
   if (!questionId) {
-    window.location.href = '/dashboard.html';
+    window.location.href = 'dashboard.html';
     return;
   }
 
@@ -32,7 +32,7 @@ async function loadQuestionDetails(questionId, currentUser) {
     renderQuestionHeader(currentQuestion, currentUser);
     renderAnswersList(currentAnswers, currentQuestion, currentUser);
   } catch (err) {
-    container.innerHTML = `<div class="error-card"><h3>Error</h3><p>${err.message}</p><a href="/dashboard.html">Back to Dashboard</a></div>`;
+    container.innerHTML = `<div class="error-card"><h3>Error</h3><p>${err.message}</p><a href="dashboard.html">Back to Dashboard</a></div>`;
   }
 }
 

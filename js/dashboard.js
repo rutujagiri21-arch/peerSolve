@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 1. Auth Guard
   const user = api.getUser();
   if (!user) {
-    window.location.href = '/login.html';
+    window.location.href = 'login.html';
     return;
   }
 
@@ -227,7 +227,7 @@ function bindCardEvents() {
       // Don't open if clicked the Me Too button
       if (e.target.closest('.me-too-box')) return;
       const id = card.dataset.id;
-      window.location.href = `/doubt-detail.html?id=${id}`;
+      window.location.href = `doubt-detail.html?id=${id}`;
     });
   });
 
@@ -317,7 +317,7 @@ function setupAskModal() {
 
         closeModal();
         form.reset();
-        window.location.href = `/doubt-detail.html?id=${res.id}`;
+        window.location.href = `doubt-detail.html?id=${res.id}`;
       } catch (err) {
         alert('Failed to post doubt: ' + err.message);
       } finally {

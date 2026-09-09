@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (user) {
     if (navLoginBtn) {
       navLoginBtn.textContent = 'Dashboard';
-      navLoginBtn.href = '/dashboard.html';
+      navLoginBtn.href = 'dashboard.html';
     }
     if (navGetStartedBtn) {
       navGetStartedBtn.textContent = `Hi, ${user.name.split(' ')[0]}`;
-      navGetStartedBtn.href = '/dashboard.html';
+      navGetStartedBtn.href = 'dashboard.html';
     }
   }
 

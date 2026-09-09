@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearErrors();
 
         await api.login(identifier, password);
-        window.location.href = '/dashboard.html';
+        window.location.href = 'dashboard.html';
       } catch (err) {
         showError(errorEl, err.message || 'Login failed. Please verify your credentials.');
       } finally {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearErrors();
 
         await api.register({ name, username, email, password, role, department, year });
-        window.location.href = '/dashboard.html';
+        window.location.href = 'dashboard.html';
       } catch (err) {
         showError(errorEl, err.message || 'Registration failed. Please check your inputs.');
       } finally {

@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Authenticating...';
-        errorEl.textContent = '';
+        clearErrors();
 
         await api.login(identifier, password);
         window.location.href = '/dashboard.html';
       } catch (err) {
-        errorEl.textContent = err.message || 'Login failed. Please verify your credentials.';
+        showError(errorEl, err.message || 'Login failed. Please verify your credentials.');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Login to PeerSolve';
+        submitBtn.textContent = 'Login to PeerSolve →';
       }
     });
   }
@@ -82,15 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Creating Account in MySQL...';
-        errorEl.textContent = '';
+        clearErrors();
 
         await api.register({ name, username, email, password, role, department, year });
         window.location.href = '/dashboard.html';
       } catch (err) {
-        errorEl.textContent = err.message || 'Registration failed. Please check your inputs.';
+        showError(errorEl, err.message || 'Registration failed. Please check your inputs.');
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Create Account & Continue';
+        submitBtn.textContent = 'Create Profile in MySQL →';
       }
     });
   }
@@ -114,10 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function showError(el, msg) {
+    if (el) {
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+  }
+
   function clearErrors() {
     const lErr = document.getElementById('login-error');
     const rErr = document.getElementById('register-error');
-    if (lErr) lErr.textContent = '';
-    if (rErr) rErr.textContent = '';
+    if (lErr) { lErr.textContent = ''; lErr.style.display = 'none'; }
+    if (rErr) { rErr.textContent = ''; rErr.style.display = 'none'; }
   }
 });

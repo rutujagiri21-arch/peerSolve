@@ -6,120 +6,316 @@
   <title>Login & Register | PeerSolve</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <style>
-    .auth-page-wrapper {
+    body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: var(--bg-subtle);
+      background: linear-gradient(135deg, #f8fafc 0%, #eff2fe 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .auth-card-container {
-      max-width: 480px;
+
+    .auth-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .auth-card {
+      max-width: 520px;
       width: 100%;
-      margin: 40px auto;
       background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.6);
       overflow: hidden;
+      transition: all 0.3s ease;
     }
-    .auth-tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--border-color);
-      background: var(--bg-subtle);
+
+    /* Tabs Header */
+    .auth-tabs-header {
+      display: flex;
+      padding: 8px;
+      background: #f1f5f9;
+      border-radius: 16px;
+      margin: 24px 32px 0;
+      gap: 6px;
     }
-    .auth-tab {
-      padding: 16px;
+
+    .auth-tab-btn {
+      flex: 1;
+      padding: 12px 16px;
       text-align: center;
       font-weight: 700;
       font-size: 14px;
-      color: var(--text-muted);
+      color: #64748b;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
+      user-select: none;
     }
-    .auth-tab.active {
+
+    .auth-tab-btn:hover {
+      color: #0f172a;
+    }
+
+    .auth-tab-btn.active {
       background: #ffffff;
-      color: var(--primary);
-      border-bottom: 2px solid var(--primary);
+      color: #4f46e5;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     }
-    .auth-form-body {
+
+    .auth-body {
       padding: 32px;
     }
-    .auth-form-body form {
+
+    .auth-heading {
+      margin-bottom: 24px;
+    }
+
+    .auth-heading h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .auth-heading p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Form Elements & Inputs (Full Width & Clean) */
+    .form-group {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 6px;
+      margin-bottom: 18px;
+      width: 100%;
     }
-    .role-selection-group {
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-control {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 14px;
+      background: #f8fafc;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .form-control::placeholder {
+      color: #94a3b8;
+    }
+
+    .form-control:focus {
+      background: #ffffff;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    /* Modern Role Selector Cards */
+    .role-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+      width: 100%;
+    }
+
+    .role-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      background: #ffffff;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .role-card:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+      transform: translateY(-2px);
+    }
+
+    .role-card input[type="radio"] {
+      display: none;
+    }
+
+    .role-card:has(input:checked) {
+      border-color: #4f46e5;
+      background: #f5f6ff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.12);
+    }
+
+    .role-emoji {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .role-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .role-card:has(input:checked) .role-title {
+      color: #4f46e5;
+    }
+
+    .role-desc {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.3;
+    }
+
+    /* Error Message Alert */
+    .auth-error-box {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 6px;
+    }
+
+    .btn-submit:hover {
+      background: #4338ca;
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* 1-Click Demo Testing Card */
+    .demo-test-card {
+      margin-top: 24px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+    }
+
+    .demo-test-card h4 {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .demo-btn-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 4px;
     }
-    .role-option {
-      border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 12px;
-      text-align: center;
+
+    .demo-btn {
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #334155;
       cursor: pointer;
       transition: all 0.15s ease;
-    }
-    .role-option input {
-      display: none;
-    }
-    .role-option:has(input:checked) {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 700;
-    }
-    .auth-error {
-      color: #ef4444;
-      font-size: 13px;
-      font-weight: 600;
-      margin-top: -4px;
-    }
-    .demo-users-box {
-      margin-top: 24px;
-      padding: 16px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-subtle);
-      border: 1px dashed var(--border-color);
-    }
-    .demo-users-box h4 {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .demo-btns {
       display: flex;
-      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
-    .demo-btn {
-      flex: 1;
-      padding: 8px 10px;
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      background: #ffffff;
-      cursor: pointer;
-    }
+
     .demo-btn:hover {
-      background: var(--primary-light);
-      color: var(--primary);
-      border-color: var(--primary-subtle);
+      background: #eef2ff;
+      border-color: #c7d2fe;
+      color: #4f46e5;
+      transform: translateY(-1px);
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .auth-tabs-header {
+        margin: 20px 20px 0;
+      }
+      .auth-body {
+        padding: 24px 20px;
+      }
     }
   </style>
 </head>
-<body class="auth-page-wrapper">
+<body>
 
-  <!-- Simple Header -->
+  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="container nav-container">
       <a href="/" class="nav-logo">
@@ -130,111 +326,129 @@
     </div>
   </nav>
 
-  <div class="container" style="flex: 1; display: flex; align-items: center; justify-content: center;">
-    
-    <div class="auth-card-container">
+  <!-- Main Auth Container -->
+  <main class="auth-main">
+    <div class="auth-card">
       
-      <!-- Already logged in notice -->
-      <div id="already-logged-in-banner" style="display:none; padding:16px; background:var(--primary-light); color:var(--primary); font-size:13px; font-weight:600; text-align:center;">
-        Logged in as <span id="logged-in-user-name"></span>. <a href="/dashboard.html" style="text-decoration:underline;">Go to Dashboard &rarr;</a>
+      <!-- Already Logged In Notice -->
+      <div id="already-logged-in-banner" style="display:none; padding:14px 20px; background:#e0e7ff; color:#3730a3; font-size:13px; font-weight:700; text-align:center; border-bottom:1px solid #c7d2fe;">
+        Logged in as <span id="logged-in-user-name"></span>. <a href="/dashboard.html" style="color:#4f46e5; text-decoration:underline; margin-left:4px;">Go to Dashboard &rarr;</a>
       </div>
 
-      <!-- Tabs: Login vs Register -->
-      <div class="auth-tabs">
-        <div class="auth-tab active" id="tab-login">Login</div>
-        <div class="auth-tab" id="tab-register">Register Account</div>
+      <!-- Segmented Tab Switcher -->
+      <div class="auth-tabs-header">
+        <div class="auth-tab-btn active" id="tab-login">Log In</div>
+        <div class="auth-tab-btn" id="tab-register">Create Account</div>
       </div>
 
-      <div class="auth-form-body">
+      <div class="auth-body">
         
-        <!-- LOGIN FORM -->
+        <!-- ==========================================
+             1. LOGIN FORM
+             ========================================== -->
         <form id="form-login">
-          <div>
-            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Welcome Back!</h2>
-            <p style="font-size: 13px; color: var(--text-muted);">Login to ask doubts or provide senior solutions</p>
+          <div class="auth-heading">
+            <h2>Welcome back!</h2>
+            <p>Enter your credentials to access the doubt forum</p>
           </div>
 
-          <div id="login-error" class="auth-error"></div>
+          <div id="login-error" class="auth-error-box"></div>
 
           <div class="form-group">
-            <label for="login-identifier">Username or Email</label>
-            <input type="text" id="login-identifier" class="form-control" placeholder="e.g. aditya_senior or rahul_student" required>
+            <label class="form-label" for="login-identifier">Username or College Email</label>
+            <input type="text" id="login-identifier" class="form-control" placeholder="e.g. aditya_senior or rahul_student" required autocomplete="username">
           </div>
 
           <div class="form-group">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" class="form-control" placeholder="Enter password" required>
+            <label class="form-label" for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 4px;">
-            Login to PeerSolve
+          <button type="submit" class="btn-submit">
+            Login to PeerSolve &rarr;
           </button>
 
-          <!-- 1-Click Demo Login -->
-          <div class="demo-users-box">
+          <!-- 1-Click Demo Testing Box -->
+          <div class="demo-test-card">
             <h4>⚡ Quick Test Login (1-Click)</h4>
-            <div class="demo-btns">
-              <button type="button" class="demo-btn" id="quick-senior-btn">👨‍💻 Login Senior (Aditya)</button>
-              <button type="button" class="demo-btn" id="quick-student-btn">🎒 Login Student (Rahul)</button>
+            <div class="demo-btn-group">
+              <button type="button" class="demo-btn" id="quick-senior-btn">
+                <span>👨‍💻</span>
+                <span>Senior (Aditya)</span>
+              </button>
+              <button type="button" class="demo-btn" id="quick-student-btn">
+                <span>🎒</span>
+                <span>Student (Rahul)</span>
+              </button>
             </div>
           </div>
         </form>
 
-        <!-- REGISTER FORM -->
+        <!-- ==========================================
+             2. REGISTER FORM
+             ========================================== -->
         <form id="form-register" style="display: none;">
-          <div>
-            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Join PeerSolve</h2>
-            <p style="font-size: 13px; color: var(--text-muted);">Register your profile in MySQL</p>
+          <div class="auth-heading">
+            <h2>Create an Account</h2>
+            <p>Join the student & senior academic network</p>
           </div>
 
-          <div id="register-error" class="auth-error"></div>
+          <div id="register-error" class="auth-error-box"></div>
 
-          <!-- Role Selector: Student vs Senior -->
+          <!-- Role Selection (Student vs Senior) -->
           <div class="form-group">
-            <label>Select Your Academic Role</label>
-            <div class="role-selection-group">
-              <label class="role-option">
+            <label class="form-label">Select Your Role</label>
+            <div class="role-grid">
+              
+              <label class="role-card">
                 <input type="radio" name="reg-role" value="student" checked>
-                <div style="font-size: 20px;">🎓</div>
-                <div style="font-size: 13px;">Junior Student</div>
-                <div style="font-size: 11px; opacity: 0.75;">Ask & resolve doubts</div>
+                <span class="role-emoji">🎓</span>
+                <span class="role-title">Junior Student</span>
+                <span class="role-desc">Ask doubts & learn without hesitation</span>
               </label>
 
-              <label class="role-option">
+              <label class="role-card">
                 <input type="radio" name="reg-role" value="senior">
-                <div style="font-size: 20px;">👨‍💻</div>
-                <div style="font-size: 13px;">Senior Mentor</div>
-                <div style="font-size: 11px; opacity: 0.75;">Earn reputation & mentor</div>
+                <span class="role-emoji">👨‍💻</span>
+                <span class="role-title">Senior Mentor</span>
+                <span class="role-desc">Answer doubts & build reputation</span>
               </label>
+
             </div>
           </div>
 
+          <!-- Full Name -->
           <div class="form-group">
-            <label for="reg-name">Full Name</label>
+            <label class="form-label" for="reg-name">Full Name</label>
             <input type="text" id="reg-name" class="form-control" placeholder="e.g. Aditya Sharma" required>
           </div>
 
-          <div class="form-group">
-            <label for="reg-username">Username</label>
-            <input type="text" id="reg-username" class="form-control" placeholder="e.g. aditya_cs" required>
-          </div>
-
-          <div class="form-group">
-            <label for="reg-email">College / Personal Email</label>
-            <input type="email" id="reg-email" class="form-control" placeholder="e.g. aditya@college.edu" required>
-          </div>
-
-          <div class="form-group">
-            <label for="reg-password">Password</label>
-            <input type="password" id="reg-password" class="form-control" placeholder="Create a secure password" required>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <!-- Username & Email in Grid -->
+          <div class="form-grid-2">
             <div class="form-group">
-              <label for="reg-department">Department / Branch</label>
+              <label class="form-label" for="reg-username">Username</label>
+              <input type="text" id="reg-username" class="form-control" placeholder="e.g. aditya_cs" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-email">College / Personal Email</label>
+              <input type="email" id="reg-email" class="form-control" placeholder="aditya@college.edu" required>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="Create a secure password" required minlength="6">
+          </div>
+
+          <!-- Department & Year in Grid -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="reg-department">Department / Branch</label>
               <select id="reg-department" class="form-control">
                 <option value="Computer Science">Computer Science</option>
-                <option value="Information Technology">IT</option>
+                <option value="Information Technology">Information Tech</option>
                 <option value="Electronics & Telecom">Electronics</option>
                 <option value="Electrical Engineering">Electrical</option>
                 <option value="Mechanical Engineering">Mechanical</option>
@@ -243,27 +457,26 @@
             </div>
 
             <div class="form-group">
-              <label for="reg-year">Year of Study</label>
+              <label class="form-label" for="reg-year">Year of Study</label>
               <select id="reg-year" class="form-control">
                 <option value="1st Year">1st Year</option>
                 <option value="2nd Year">2nd Year</option>
                 <option value="3rd Year">3rd Year</option>
                 <option value="4th Year">4th Year</option>
-                <option value="Alumni">Alumni</option>
+                <option value="Alumni">Alumni / Graduate</option>
               </select>
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 4px;">
-            Create Account & Continue
+          <button type="submit" class="btn-submit">
+            Create Profile in MySQL &rarr;
           </button>
         </form>
 
       </div>
 
     </div>
-
-  </div>
+  </main>
 
   <script type="module" src="/js/auth.js"></script>
 </body>
